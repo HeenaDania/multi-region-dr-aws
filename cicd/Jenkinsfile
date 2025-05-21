@@ -1,0 +1,26 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') {
+      steps {
+        git 'https://github.com/HeenaDania/multi-region-dr-aws.git'
+      }
+    }
+    stage('Terraform Init') {
+      steps {
+        bat 'cd terraform && terraform init'
+      }
+    }
+    stage('Terraform Plan') {
+      steps {
+        bat 'cd terraform && terraform plan'
+      }
+    }
+    stage('Terraform Apply') {
+      steps {
+        input 'Approve to apply?'
+        bat 'cd terraform && terraform apply -auto-approve'
+      }
+    }
+  }
+}

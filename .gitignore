@@ -1,0 +1,35 @@
+# Ignore all .terraform directories at any depth
+**/.terraform/
+
+# Ignore Terraform state files and backups (contain sensitive data)
+*.tfstate
+*.tfstate.*
+
+# Ignore crash log files
+crash.log
+crash.*.log
+
+# Ignore override files (used for local overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore variable files (often contain secrets)
+*.tfvars
+*.tfvars.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore plan files (optional, if you use them)
+*.tfplan
+
+# Ignore IDE/editor files (optional, for VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+.DS_Store
+
+# Uncomment if you do NOT want to track the lock file (not recommended)
+# .terraform.lock.hcl

@@ -1,2 +1,2 @@
-# db_password = "YourSecurePassword123!"
-# domain_name = "yourdomain.com"
+db_password = "YourSecurePassword123!"
+domain_name = "yourdomain.com"

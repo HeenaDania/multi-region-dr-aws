@@ -59,3 +59,31 @@
 #     evaluate_target_health = true
 #   }
 # }
+# SNS Topic for Route 53 Health Alerts
+# resource "aws_sns_topic" "route53_health_alerts" {
+#   name = "route53-health-alerts"
+# }
+
+# resource "aws_sns_topic_subscription" "route53_email" {
+#   topic_arn = aws_sns_topic.route53_health_alerts.arn
+#   protocol  = "email"
+#   endpoint  = "heena.dania7@gmail.com"
+# }
+
+# # CloudWatch Alarm for Route 53 Health Check
+# resource "aws_cloudwatch_metric_alarm" "route53_health_check" {
+#   alarm_name          = "Route53HealthCheckAlarm"
+#   comparison_operator = "LessThanThreshold"
+#   evaluation_periods  = 1
+#   metric_name         = "HealthCheckStatus"
+#   namespace           = "AWS/Route53"
+#   period              = 60
+#   statistic           = "Minimum"
+#   threshold           = 1
+#   alarm_description   = "Alarm if Route 53 health check fails"
+#   dimensions = {
+#     HealthCheckId = aws_route53_health_check.primary.id
+#   }
+#   alarm_actions = [aws_sns_topic.route53_health_alerts.arn]
+# }
+

@@ -120,3 +120,39 @@ resource "aws_s3_bucket_replication_configuration" "replication" {
     }
   }
 }
+# SNS Topic for S3 Replication Alerts
+resource "aws_sns_topic" "s3_replication_alerts" {
+  name = "s3-replication-alerts"
+}
+
+resource "aws_sns_topic_subscription" "s3_email" {
+  topic_arn = aws_sns_topic.s3_replication_alerts.arn
+  protocol  = "email"
+  endpoint  = "heena.dania7@gmail.com" 
+}
+
+# S3 Event Notification for Replication Failures
+resource "aws_s3_bucket_notification" "primary" {
+  bucket = aws_s3_bucket.primary.id
+
+  eventbridge = true  # Enable EventBridge for advanced event routing
+}
+
+# Use EventBridge to route S3 Replication Failure events to SNS
+resource "aws_cloudwatch_event_rule" "s3_replication_failed" {
+  name        = "S3ReplicationFailed"
+  description = "Alert on S3 replication failure"
+  event_pattern = jsonencode({
+    "source": ["aws.s3"],
+    "detail-type": ["AWS API Call via CloudTrail"],
+    "detail": {
+      "eventName": ["ReplicationOperationFailed"]
+    }
+  })
+}
+
+resource "aws_cloudwatch_event_target" "s3_replication_failed" {
+  rule      = aws_cloudwatch_event_rule.s3_replication_failed.name
+  arn       = aws_sns_topic.s3_replication_alerts.arn
+}
+

@@ -65,11 +65,32 @@ resource "aws_instance" "primary" {
   user_data = <<-EOF
     #!/bin/bash
     yum update -y
-    yum install -y httpd
+    yum install -y httpd awslogs
+
+    # Start and enable Apache
     systemctl start httpd
     systemctl enable httpd
+
+    # Configure the CloudWatch Logs agent
+    cat > /etc/awslogs/awslogs.conf <<CWCONF
+    [general]
+    state_file = /var/lib/awslogs/agent-state
+
+    [/var/log/messages]
+    file = /var/log/messages
+    log_group_name = /aws/ec2/jenkins
+    log_stream_name = {instance_id}/messages
+    datetime_format = %b %d %H:%M:%S
+    CWCONF
+
+    # Start and enable CloudWatch Logs agent
+    systemctl start awslogsd
+    systemctl enable awslogsd.service
+
+    # Simple web page
     echo "<h1>This is the primary region server ${count.index + 1}</h1>" > /var/www/html/index.html
     EOF
+
   
   tags = {
     Name = "${var.project_name}-primary-ec2-${count.index + 1}"
@@ -90,9 +111,29 @@ resource "aws_instance" "secondary" {
   user_data = <<-EOF
     #!/bin/bash
     yum update -y
-    yum install -y httpd
+    yum install -y httpd awslogs
+
+    # Start and enable Apache
     systemctl start httpd
     systemctl enable httpd
+
+    # Configure the CloudWatch Logs agent
+    cat > /etc/awslogs/awslogs.conf <<CWCONF
+    [general]
+    state_file = /var/lib/awslogs/agent-state
+
+    [/var/log/messages]
+    file = /var/log/messages
+    log_group_name = /aws/ec2/jenkins
+    log_stream_name = {instance_id}/messages
+    datetime_format = %b %d %H:%M:%S
+    CWCONF
+
+    # Start and enable CloudWatch Logs agent
+    systemctl start awslogsd
+    systemctl enable awslogsd.service
+
+    # Simple web page
     echo "<h1>This is the secondary region (DR) server ${count.index + 1}</h1>" > /var/www/html/index.html
     EOF
   

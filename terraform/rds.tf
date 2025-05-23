@@ -60,3 +60,30 @@ resource "aws_db_instance" "secondary_replica" {
     Name = "${var.project_name}-secondary-rds"
   }
 }
+# SNS Topic for RDS Replication Alerts
+resource "aws_sns_topic" "rds_replication_alerts" {
+  name = "rds-replication-alerts"
+}
+
+resource "aws_sns_topic_subscription" "rds_email" {
+  topic_arn = aws_sns_topic.rds_replication_alerts.arn
+  protocol  = "email"
+  endpoint  = "heena.dania7@gmail.com"
+}
+
+# CloudWatch Alarm for RDS Replica Lag
+resource "aws_cloudwatch_metric_alarm" "rds_replica_lag" {
+  alarm_name          = "RDSReplicaLagAlarm"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "ReplicaLag"
+  namespace           = "AWS/RDS"
+  period              = 60
+  statistic           = "Average"
+  threshold           = 1
+  alarm_description   = "Alarm if RDS replica lag is greater than 1 second"
+  dimensions = {
+    DBInstanceIdentifier = aws_db_instance.secondary_replica.id
+  }
+  alarm_actions = [aws_sns_topic.rds_replication_alerts.arn]
+}

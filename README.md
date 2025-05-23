@@ -1,6 +1,6 @@
 # multi-region-dr-aws
-AWS Multi-Region Disaster Recovery with Terraform &amp; Jenkins
-📖 Project Description
+<!-- AWS Multi-Region Disaster Recovery with Terraform &amp; Jenkins
+📖 Project Description -->
 This project demonstrates how to set up a multi-region disaster recovery (DR) architecture on AWS using Terraform and Jenkins for CI/CD automation. The infrastructure is deployed in two AWS regions (us-east-1 and us-west-2) and includes VPCs, S3 buckets with cross-region replication, RDS databases with replication, Route 53 DNS failover, and automated deployment via Jenkins.
 
 🗂️ Folder Structure

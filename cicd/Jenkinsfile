@@ -8,6 +8,12 @@ pipeline {
     stage('Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/HeenaDania/multi-region-dr-aws.git'
+        
+      }
+    }
+    stage('Show Git Commit') {
+      steps {
+        bat 'git log -1'
       }
     }
     stage('Terraform Init') {

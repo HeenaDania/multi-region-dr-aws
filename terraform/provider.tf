@@ -16,11 +16,12 @@ terraform {
   }
 }
 
+# Default provider configuration
 provider "aws" {
   region = "us-east-1"
 }
 
-# Default provider configuration (primary region)
+# Primary region provider
 provider "aws" {
   region = "us-east-1"
   alias  = "primary"

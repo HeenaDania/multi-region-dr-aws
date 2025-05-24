@@ -72,5 +72,5 @@ variable "db_password" {
 # Route53 Variables
 variable "domain_name" {
   description = "Domain name for the application"
-  default     = "heenadania.com"  
+  default     = "heenadania.com "  
 }

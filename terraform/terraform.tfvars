@@ -1,2 +1,2 @@
 db_password = "YourSecurePassword123!"
-domain_name = "yourdomain.com"
+domain_name = "heenadania.com"

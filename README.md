@@ -95,7 +95,7 @@ Upload files to the primary S3 bucket and verify they appear in the secondary bu
 * Backend resources (S3/DynamoDB) must be created manually before first terraform init.  
 
 📚 References  
-* [ ,AWS Multi-Region Disaster Recovery Guide, ] ( ,https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html, )
+* [AWS Multi-Region Disaster Recovery Guide] (https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
 
 * [Terraform AWS Provider Docs] (https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 

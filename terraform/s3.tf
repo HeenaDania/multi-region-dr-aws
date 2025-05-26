@@ -146,6 +146,7 @@ resource "aws_cloudwatch_event_rule" "s3_replication_failed" {
     "source": ["aws.s3"],
     "detail-type": ["AWS API Call via CloudTrail"],
     "detail": {
+      "eventSource": ["s3.amazonaws.com"],
       "eventName": ["ReplicationOperationFailed"]
     }
   })

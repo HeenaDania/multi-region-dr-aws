@@ -7,17 +7,17 @@ This project demonstrates how to set up a multi-region disaster recovery (DR) ar
 multi-region-dr-aws/  
 │  
 ├── cicd/  
-│   └── Jenkinsfile         # Jenkins pipeline for CI/CD automation  
+│     └── Jenkinsfile         # Jenkins pipeline for CI/CD automation  
 │  
 └── terraform/  
-    ├── ec2.tf              # EC2 and Load Balancer resources  
-    ├── main.tf             # Main entry point, includes all modules  
-    ├── provider.tf         # AWS provider configuration for both regions  
-    ├── rds.tf              # RDS and replication resources  
-    ├── route53.tf          # Route 53 failover setup  
-    ├── s3.tf               # S3 buckets and cross-region replication  
-    ├── variables.tf        # Input variables  
-    └── vpc.tf              # VPC, subnets, gateways, and peering  
+      ├── ec2.tf              # EC2 and Load Balancer resources  
+      ├── main.tf             # Main entry point, includes all modules  
+      ├── provider.tf         # AWS provider configuration for both regions  
+      ├── rds.tf              # RDS and replication resources  
+      ├── route53.tf          # Route 53 failover setup  
+      ├── s3.tf               # S3 buckets and cross-region replication  
+      ├── variables.tf        # Input variables  
+      └── vpc.tf              # VPC, subnets, gateways, and peering  
 
 🚀 End-to-End Flow  
 1. Networking:  

@@ -19,6 +19,9 @@ multi-region-dr-aws/
       ├── variables.tf        # Input variables  
       └── vpc.tf              # VPC, subnets, gateways, and peering  
 
+🏗️ Architectural Diagram   
+![Architectural Diagram](architecturalDiagram.png)  
+
 🚀 End-to-End Flow  
 1. Networking:  
 Creates VPCs, subnets, routing, and gateways in two AWS regions.  
@@ -95,17 +98,17 @@ Upload files to the primary S3 bucket and verify they appear in the secondary bu
 * Backend resources (S3/DynamoDB) must be created manually before first terraform init.  
 
 📚 References  
-* [AWS Multi-Region Disaster Recovery Guide] (https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
+* AWS Multi-Region Disaster Recovery Guide (https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
 
-* [Terraform AWS Provider Docs] (https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+* Terraform AWS Provider Docs (https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
-* [Jenkins Pipeline Documentation] (https://www.jenkins.io/doc/book/pipeline/)
+* Jenkins Pipeline Documentation (https://www.jenkins.io/doc/book/pipeline/)
 
 🎥 Video Tutorials
-* [AWS Route 53 Failover Routing] (https://www.youtube.com/watch?v=o9xU5AcEpjw)
+* AWS Route 53 Failover Routing (https://www.youtube.com/watch?v=o9xU5AcEpjw)
 
-* [Terraform for Multi-Region Setup] (https://www.youtube.com/watch?v=Ze0LhKFvluI)
+* Terraform for Multi-Region Setup (https://www.youtube.com/watch?v=Ze0LhKFvluI)
 
-* [CI/CD Pipeline with Jenkins and AWS] (https://www.youtube.com/watch?v=nxp-WEz0KE8&t=916s)
+* CI/CD Pipeline with Jenkins and AWS (https://www.youtube.com/watch?v=nxp-WEz0KE8&t=916s)
 
 Happy deploying! For any issues, open an issue or reach out to the project maintainer.
